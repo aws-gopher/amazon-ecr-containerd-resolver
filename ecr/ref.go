@@ -21,10 +21,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/arn"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/aws/arn"
+	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
-	"github.com/aws/aws-sdk-go/service/ecr"
 	"github.com/containerd/containerd/reference"
 	"github.com/opencontainers/go-digest"
 )
@@ -196,9 +196,9 @@ func (spec ECRSpec) Spec() reference.Spec {
 	}
 }
 
-// ImageID returns an ecr.ImageIdentifier suitable for using in calls to ECR
-func (spec ECRSpec) ImageID() *ecr.ImageIdentifier {
-	imageID := ecr.ImageIdentifier{}
+// ImageID returns an types.ImageIdentifier suitable for using in calls to ECR
+func (spec ECRSpec) ImageID() types.ImageIdentifier {
+	imageID := types.ImageIdentifier{}
 	tag, digest := spec.TagDigest()
 	if tag != "" {
 		imageID.ImageTag = aws.String(tag)
@@ -206,7 +206,7 @@ func (spec ECRSpec) ImageID() *ecr.ImageIdentifier {
 	if digest != "" {
 		imageID.ImageDigest = aws.String(digest.String())
 	}
-	return &imageID
+	return imageID
 }
 
 // TagDigest returns the tag and/or digest specified by the reference

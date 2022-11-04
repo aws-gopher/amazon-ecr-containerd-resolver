@@ -16,7 +16,7 @@
 // Package ecr provides implementations of the containerd Resolver, Fetcher, and
 // Pusher interfaces that can use the Amazon ECR API to push and pull images.
 //
-// References
+// # References
 //
 // containerd specifies images with a reference, or a "ref".  References are
 // different from Docker image names, as references encode an identifier, but
@@ -27,7 +27,7 @@
 // of the repository and a label and/or a digest.  Valid references are of the
 // form "ecr.aws/arn:aws:ecr:<region>:<account>:repository/<name>:<tag>".
 //
-// License
+// # License
 //
 // This package is licensed under the Apache 2.0 license.
 package ecr
